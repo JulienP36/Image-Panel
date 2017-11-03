@@ -6,7 +6,7 @@
 // Login   <poitre_j@etna-alternance.net>
 // 
 // Started on  Fri Nov  3 10:00:19 2017 POITREAU Julien
-// Last update Fri Nov  3 20:36:13 2017 POITREAU Julien
+// Last update Fri Nov  3 20:40:07 2017 POITREAU Julien
 //
 
 function is_url($url)
@@ -153,7 +153,7 @@ while ($counter < $argc)
 	      $image = imagecreatefromjpeg($images[0][$counter1]);
 	    if ($extension['extension'] == "gif")
 	      $image = imagecreatefromgif($images[0][$counter1]);;
-	    imagecopyresized($canvas, $image, $x_pos, $y_pos, 0, 0, 100, 100, imagesx($image), imagesy($image));
+	    imagecopyresized($canvas, $image, $x_pos, $y_pos, 0, 0, 100, 80, imagesx($image), imagesy($image));
 	    echo $images[0][$counter1]."\n";
 	    ++$counter1;
 	    $x_pos += 100;
