@@ -6,7 +6,7 @@
 // Login   <poitre_j@etna-alternance.net>
 // 
 // Started on  Fri Nov  3 10:00:19 2017 POITREAU Julien
-// Last update Fri Nov  3 20:30:39 2017 POITREAU Julien
+// Last update Fri Nov  3 20:36:13 2017 POITREAU Julien
 //
 
 function is_url($url)
@@ -164,13 +164,13 @@ while ($counter < $argc)
 	      }
 	  }
       }
+    if ($g == 1)
+      imagegif($canvas, "test".$counter.".gif");
+    if ($j == 1)
+      imagejpeg($canvas, "test".$counter.".jpeg");
+    if ($p == 1)
+      imagepng($canvas, "test".$counter.".png");
     ++$counter;
   }
-if ($g == 1)
-  imagegif($canvas, "test.gif");
-if ($j == 1)
-  imagejpeg($canvas, "test.jpeg");
-if ($p == 1)
-  imagepng($canvas, "test.png");
 imagedestroy($canvas);
 ?>
