@@ -6,7 +6,7 @@
 // Login   <poitre_j@etna-alternance.net>
 // 
 // Started on  Fri Nov  3 10:00:19 2017 POITREAU Julien
-// Last update Fri Nov  3 18:11:13 2017 POITREAU Julien
+// Last update Fri Nov  3 19:03:52 2017 POITREAU Julien
 //
 
 function is_url($url)
@@ -85,12 +85,34 @@ else
     $counter = 1;
   }
 echo "g:".$g." j:".$j." l:".$l." n:".$n." N:".$N." p:".$p." s:".$s."\n";
+if ($l == 1)
+  {
+    if (is_numeric($argv[2]) == false)
+      {
+	echo "Erreur: l'argument ".$argv[2]."n'est pas un nombre\n";
+	$validate = 0;
+      }
+    $max_images_amount = $argv[2];
+    $counter = 3;
+  }
 if ($validate == 1)
 while ($counter < $argc)
   {
     $ok = 0;
     if (file_exists($argv[$counter]) == true)
-      $ok = 1;
+      {
+	if (is_dir($argv[$counter]) == true)
+	  {
+	    echo "Erreur: ".$argv[$counter]." est un répertoire\n";
+	    return (0);
+	  }
+	else if (is_readable($argv[$counter]) == false)
+	  {
+	    echo "Erreur: ".$argv[$counter]." est interdit à la lecture\n";
+	    return (0);
+	  }
+	$ok = 1;
+      }
     $url = $argv[$counter];
     if (is_url($url))
       {
@@ -110,8 +132,12 @@ while ($counter < $argc)
 	$content = file_get_contents($argv[$counter]);
 	preg_match_all("/(?<=src=\")([^\"])+(png|jpg|gif)/",$content, $images);
 	$length = count($images[0]);
+	if ($l == 1)
+	  {
+	    $max_images_amount = $length;
+	  }
 	$counter1 = 0;
-	while ($counter1 < $length - 1)
+	while (($counter1 < $max_images_amount) && ($counter1 < $length - 1))
 	  {
 	    $image = imagecreatefrompng($images[0][$counter1]);
 	    echo $images[0][$counter1]."\n";
