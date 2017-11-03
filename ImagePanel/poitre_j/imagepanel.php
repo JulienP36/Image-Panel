@@ -6,7 +6,7 @@
 // Login   <poitre_j@etna-alternance.net>
 // 
 // Started on  Fri Nov  3 10:00:19 2017 POITREAU Julien
-// Last update Fri Nov  3 22:09:45 2017 POITREAU Julien
+// Last update Fri Nov  3 22:11:25 2017 POITREAU Julien
 //
 
 function is_url($url)
@@ -163,7 +163,7 @@ while ($counter < $argc - 1)
 	    $new_heigth = ((imagesy($image) * $reduction) / 100);
 	    imagecopyresized($canvas, $image, $x_pos, $y_pos, 0, 0, $new_length, $new_heigth, imagesx($image), imagesy($image));
 	    if (($n ==1) || ($N == 1))
-	      imagestring($canvas, 1, $x_pos, $y_pos + 160, $name[0],$text_color);
+	      imagestring($canvas, 1, $x_pos, $y_pos + imagesy($image), $name[0],$text_color);
 	    echo $images[0][$counter1]."\n";
 	    ++$counter1;
 	    $x_pos += 200;
