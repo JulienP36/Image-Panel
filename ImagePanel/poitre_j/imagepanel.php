@@ -6,7 +6,7 @@
 // Login   <poitre_j@etna-alternance.net>
 // 
 // Started on  Fri Nov  3 10:00:19 2017 POITREAU Julien
-// Last update Fri Nov  3 20:40:07 2017 POITREAU Julien
+// Last update Fri Nov  3 21:03:34 2017 POITREAU Julien
 //
 
 function is_url($url)
@@ -144,6 +144,7 @@ while ($counter < $argc)
 	$canvas = imagecreatetruecolor(800, 800);
 	$x_pos = 0;
 	$y_pos = 0;
+	$text_color = imagecolorallocate($canvas , 255, 255, 255);
 	while (($counter1 < $max_images_amount) && ($counter1 < $length - 1))
 	  {
 	    $extension = pathinfo($images[0][$counter1]);
@@ -154,6 +155,7 @@ while ($counter < $argc)
 	    if ($extension['extension'] == "gif")
 	      $image = imagecreatefromgif($images[0][$counter1]);;
 	    imagecopyresized($canvas, $image, $x_pos, $y_pos, 0, 0, 100, 80, imagesx($image), imagesy($image));
+	    imagestring($canvas, 1, $x_pos, $y_pos + 80, $test_color);
 	    echo $images[0][$counter1]."\n";
 	    ++$counter1;
 	    $x_pos += 100;
