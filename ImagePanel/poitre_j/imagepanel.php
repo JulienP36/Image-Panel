@@ -6,7 +6,7 @@
 // Login   <poitre_j@etna-alternance.net>
 // 
 // Started on  Fri Nov  3 10:00:19 2017 POITREAU Julien
-// Last update Fri Nov  3 22:53:56 2017 POITREAU Julien
+// Last update Fri Nov  3 22:59:23 2017 POITREAU Julien
 //
 
 function find_width($number)
@@ -172,8 +172,16 @@ while ($counter < $argc - 1)
 	      $new_length = (800 / find_width($max_images_amount));
 	    else
 	      $new_length = (800 / find_width($length));
-	    $reduction = (($new_length * 100) / imagesx($image));
-	    $new_heigth = ((imagesy($image) * $reduction) / 100);
+	    if (imagesx($image) >= imagesy($image))
+	      {
+		$reduction = (($new_length * 100) / imagesx($image));
+		$new_heigth = ((imagesy($image) * $reduction) / 100);
+	      }
+	    else
+	      {
+		$reduction = (($new_length * 100) / imagesy($image));
+		$new_heigth = ((imagesx($image) * $reduction) / 100);
+	      }
 	    imagecopyresized($canvas, $image, $x_pos, $y_pos, 0, 0, $new_length, $new_heigth, imagesx($image), imagesy($image));
 	    if (($n ==1) || ($N == 1))
 	      imagestring($canvas, 1, $x_pos, $y_pos + imagesy($image), $name[0],$text_color);
