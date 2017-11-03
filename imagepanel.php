@@ -6,7 +6,7 @@
 // Login   <poitre_j@etna-alternance.net>
 // 
 // Started on  Fri Nov  3 10:00:19 2017 POITREAU Julien
-// Last update Fri Nov  3 21:15:11 2017 POITREAU Julien
+// Last update Fri Nov  3 21:16:00 2017 POITREAU Julien
 //
 
 function is_url($url)
@@ -148,7 +148,7 @@ while ($counter < $argc)
 	while (($counter1 < $max_images_amount) && ($counter1 < $length - 1))
 	  {
 	    $extension = pathinfo($images[0][$counter1]);
-	    preg_match('/([^\/]+)(?=\.\w+$)/', $images[0][$counter1], $fname);
+	    preg_match('/([^\/]+)(?=\.\w+$)/', $images[0][$counter1], $name);
 	    if ($extension['extension'] == "png")
 	      $image = imagecreatefrompng($images[0][$counter1]);
 	    if ($extension['extension'] == "jpeg")
@@ -156,7 +156,7 @@ while ($counter < $argc)
 	    if ($extension['extension'] == "gif")
 	      $image = imagecreatefromgif($images[0][$counter1]);;
 	    imagecopyresized($canvas, $image, $x_pos, $y_pos, 0, 0, 100, 80, imagesx($image), imagesy($image));
-	    imagestring($canvas, 1, $x_pos, $y_pos + 80, $fname,$text_color);
+	    imagestring($canvas, 1, $x_pos, $y_pos + 80, $name[0],$text_color);
 	    echo $images[0][$counter1]."\n";
 	    ++$counter1;
 	    $x_pos += 100;
