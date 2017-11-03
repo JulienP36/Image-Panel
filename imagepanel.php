@@ -6,19 +6,17 @@
 // Login   <poitre_j@etna-alternance.net>
 // 
 // Started on  Fri Nov  3 10:00:19 2017 POITREAU Julien
-// Last update Fri Nov  3 22:44:10 2017 POITREAU Julien
+// Last update Fri Nov  3 22:53:56 2017 POITREAU Julien
 //
 
 function find_width($number)
 {
-  $counter = 1;
-  $subnumber = $number;
-  while (!is_int(sqrt($subnumber)))
+  $subnumber = intval(sqrt($number)) + 1;
+  while (intval(sqrt($number)) != $subnumber)
     {
-      ++$counter;
-      ++$subnumber;
+      ++$number;
     }
-  return (sqrt($subnumber));
+  return (sqrt($number));
 }
 
 function is_url($url)
@@ -171,9 +169,9 @@ while ($counter < $argc - 1)
 	    if ($extension['extension'] == "gif")
 	      $image = imagecreatefromgif($images[0][$counter1]);
 	    if (($l == 1) && ($max_images_amount < $length))
-	      $new_length = 800 / find_width($max_images_amount);
+	      $new_length = (800 / find_width($max_images_amount));
 	    else
-	      $new_length = 800 / find_width($length);
+	      $new_length = (800 / find_width($length));
 	    $reduction = (($new_length * 100) / imagesx($image));
 	    $new_heigth = ((imagesy($image) * $reduction) / 100);
 	    imagecopyresized($canvas, $image, $x_pos, $y_pos, 0, 0, $new_length, $new_heigth, imagesx($image), imagesy($image));
