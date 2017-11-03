@@ -6,7 +6,7 @@
 // Login   <poitre_j@etna-alternance.net>
 // 
 // Started on  Fri Nov  3 10:00:19 2017 POITREAU Julien
-// Last update Fri Nov  3 21:22:19 2017 POITREAU Julien
+// Last update Fri Nov  3 21:24:51 2017 POITREAU Julien
 //
 
 function is_url($url)
@@ -164,7 +164,7 @@ while ($counter < $argc)
 	    echo $images[0][$counter1]."\n";
 	    ++$counter1;
 	    $x_pos += 100;
-	    if ($x_pos == 800)
+	    if ($x_pos == 500)
 	      {
 		$x_pos = 0;
 		$y_pos += 100;
