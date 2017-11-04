@@ -6,7 +6,7 @@
 // Login   <poitre_j@etna-alternance.net>
 // 
 // Started on  Fri Nov  3 10:00:19 2017 POITREAU Julien
-// Last update Sat Nov  4 10:57:16 2017 POITREAU Julien
+// Last update Sat Nov  4 11:00:51 2017 POITREAU Julien
 //
 
 function find_width($number)
@@ -192,17 +192,17 @@ if ($ok == 1)
 	    $sublength = count($images[0]);
 	    $counter2 = 0;
 	  }
-	$extension = pathinfo($images[0][$counter1]);
+	$extension = pathinfo($images[0][$counter2]);
 	if ($n == 1)
-	  preg_match('/([^\/]+)(?=\.\w+$)/', $images[0][$counter1], $name);
+	  preg_match('/([^\/]+)(?=\.\w+$)/', $images[0][$counter2], $name);
 	if ($N == 1)
 	  preg_match('/([^\/][\d\w\.]+)$(?<=(?:.jpeg)|(?:.png)|(?:.gif))/', $images[0][$counter1], $name);
 	if ($extension['extension'] == "png")
-	  $image = imagecreatefrompng($images[0][$counter1]);
+	  $image = imagecreatefrompng($images[0][$counter2]);
 	if ($extension['extension'] == "jpeg")
-	  $image = imagecreatefromjpeg($images[0][$counter1]);
+	  $image = imagecreatefromjpeg($images[0][$counter2]);
 	if ($extension['extension'] == "gif")
-	  $image = imagecreatefromgif($images[0][$counter1]);
+	  $image = imagecreatefromgif($images[0][$counter2]);
 	if (($l == 1) && ($max_images_amount < $length))
 	  $new_length = (800 / find_width($max_images_amount));
 	else
@@ -225,7 +225,7 @@ if ($ok == 1)
 	imagecopyresized($canvas, $image, $x_pos, $y_pos, 0, 0, $new_length, $new_heigth, imagesx($image), imagesy($image));
 	if (($n ==1) || ($N == 1))
 	  imagestring($canvas, 1, $x_pos, $y_pos, $name[0],$text_color);
-	echo $images[0][$counter1]."\n";
+	echo $images[0][$counter2]."\n";
 	++$counter1;
 	++$counter2;
 	$x_pos += $new_length;
