@@ -6,7 +6,7 @@
 // Login   <poitre_j@etna-alternance.net>
 // 
 // Started on  Fri Nov  3 10:00:19 2017 POITREAU Julien
-// Last update Sat Nov  4 11:45:57 2017 POITREAU Julien
+// Last update Sat Nov  4 11:52:38 2017 POITREAU Julien
 //
 
 function find_width($number)
@@ -123,7 +123,12 @@ while ($counter < $argc - 1)
 	    echo "Erreur: ".$argv[$counter]." est interdit à la lecture\n";
 	    return (0);
 	  }
-	$ok = 1;
+	else
+	  {
+	    echo "Erreur: ".$argv[$counter]." est un fichier\n";
+	    return (0);
+	  }
+	$ok = 0;
       }
     $url = $argv[$counter];
     $url_headr[0] = "0";
