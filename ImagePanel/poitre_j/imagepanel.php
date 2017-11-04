@@ -6,12 +6,12 @@
 // Login   <poitre_j@etna-alternance.net>
 // 
 // Started on  Fri Nov  3 10:00:19 2017 POITREAU Julien
-// Last update Fri Nov  3 23:07:52 2017 POITREAU Julien
+// Last update Sat Nov  4 09:06:24 2017 POITREAU Julien
 //
 
 function find_width($number)
 {
-  $subnumber = intval(sqrt($number)) + 1;
+  $subnumber = intval(sqrt($number - 1)) + 1;
   while (intval(sqrt($number)) != $subnumber)
     {
       ++$number;
