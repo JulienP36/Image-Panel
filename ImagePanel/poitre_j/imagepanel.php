@@ -6,7 +6,7 @@
 // Login   <poitre_j@etna-alternance.net>
 // 
 // Started on  Fri Nov  3 10:00:19 2017 POITREAU Julien
-// Last update Sat Nov  4 10:09:00 2017 POITREAU Julien
+// Last update Sat Nov  4 10:50:28 2017 POITREAU Julien
 //
 
 function find_width($number)
@@ -100,11 +100,12 @@ if ($l == 1)
     if (is_numeric($argv[2]) == false)
       {
 	echo "Erreur: l'argument ".$argv[2]."n'est pas un nombre\n";
-	$validate = 0;
+	return (0);
       }
     $max_images_amount = $argv[2];
     $counter = 3;
   }
+$ok = 0;
 if ($validate == 1)
 while ($counter < $argc - 1)
   {
@@ -147,74 +148,99 @@ while ($counter < $argc - 1)
 	    return (0);
 	  }
 	preg_match_all("/(?<=src=\")([^\"])+(png|jpg|gif)/",$content, $images);
-	if ($s == 1)
-	  {
-	    sort($images[0]);
-	  }
-	$length = count($images[0]);
+	$length += count($images[0]);
 	if ($l == 0)
 	  {
 	    $max_images_amount = $length;
 	  }
-	$counter1 = 0;
-	$canvas = imagecreatetruecolor(800, 800);
-	$x_pos = 0;
-	$y_pos = 0;
-	$image = "";
-	$text_color = imagecolorallocate($canvas , 255, 255, 255);
-	while (($counter1 < $max_images_amount) && ($counter1 < $length - 1))
+      }
+    ++$counter;
+  }
+if ($ok == 1)
+  {
+    $counter = 1;
+    if ($option[0] == '-')
+      $counter = 2;
+    if ($l == 1)
+      $counter = 3;
+    $counter1 = 0;
+    $content = "";
+    $content = file_get_contents($argv[$counter]);
+    preg_match_all("/(?<=src=\")([^\"])+(png|jpg|gif)/",$content, $images);
+    if ($s == 1)
+      {
+	sort($images[0]);
+      }
+    $counter2 = 0;
+    $sublength += count($images[0]);
+    $canvas = imagecreatetruecolor(800, 800);
+    $x_pos = 0;
+    $y_pos = 0;
+    $image = "";
+    $text_color = imagecolorallocate($canvas , 255, 255, 255);
+    while (($counter1 < $max_images_amount) && ($counter1 < $length - 1))
+      {
+	if (!$counter2 < $sublength)
 	  {
-	    $extension = pathinfo($images[0][$counter1]);
-	    if ($n == 1)
-	      preg_match('/([^\/]+)(?=\.\w+$)/', $images[0][$counter1], $name);
-	    if ($N == 1)
-	      preg_match('/([^\/][\d\w\.]+)$(?<=(?:.jpeg)|(?:.png)|(?:.gif))/', $images[0][$counter1], $name);
-	    if ($extension['extension'] == "png")
-	      $image = imagecreatefrompng($images[0][$counter1]);
-	    if ($extension['extension'] == "jpeg")
-	      $image = imagecreatefromjpeg($images[0][$counter1]);
-	    if ($extension['extension'] == "gif")
-	      $image = imagecreatefromgif($images[0][$counter1]);
-	    if (($l == 1) && ($max_images_amount < $length))
-	      $new_length = (800 / find_width($max_images_amount));
-	    else
-	      $new_length = (800 / find_width($length));
-	    if ((is_bool($image)) || ($image == NULL))
+	    $content = "";
+	    $content = file_get_contents($argv[$counter]);
+	    preg_match_all("/(?<=src=\")([^\"])+(png|jpg|gif)/",$content, $images);
+	    if ($s == 1)
 	      {
-		echo "Erreur: Impossible de créer l'image...\n";
-		return (0);
+		sort($images[0]);
 	      }
-	    if (imagesx($image) >= imagesy($image))
-	      {
-		$reduction = (($new_length * 100) / imagesx($image));
-		$new_heigth = ((imagesy($image) * $reduction) / 100);
-	      }
-	    else
-	      {
-		$reduction = (($new_length * 100) / imagesy($image));
-		$new_heigth = ((imagesx($image) * $reduction) / 100);
-	      }
-	    imagecopyresized($canvas, $image, $x_pos, $y_pos, 0, 0, $new_length, $new_heigth, imagesx($image), imagesy($image));
-	    if (($n ==1) || ($N == 1))
-	      imagestring($canvas, 1, $x_pos, $y_pos, $name[0],$text_color);
-	    echo $images[0][$counter1]."\n";
-	    ++$counter1;
-	    $x_pos += $new_length;
-	    if ($x_pos >= 800)
-	      {
-		$x_pos = 0;
-		$y_pos += $new_length;
-	      }
+	    $sublength += count($images[0]);
+	    $counter2 = 0;
+	  }
+	$extension = pathinfo($images[0][$counter1]);
+	if ($n == 1)
+	  preg_match('/([^\/]+)(?=\.\w+$)/', $images[0][$counter1], $name);
+	if ($N == 1)
+	  preg_match('/([^\/][\d\w\.]+)$(?<=(?:.jpeg)|(?:.png)|(?:.gif))/', $images[0][$counter1], $name);
+	if ($extension['extension'] == "png")
+	  $image = imagecreatefrompng($images[0][$counter1]);
+	if ($extension['extension'] == "jpeg")
+	  $image = imagecreatefromjpeg($images[0][$counter1]);
+	if ($extension['extension'] == "gif")
+	  $image = imagecreatefromgif($images[0][$counter1]);
+	if (($l == 1) && ($max_images_amount < $length))
+	  $new_length = (800 / find_width($max_images_amount));
+	else
+	  $new_length = (800 / find_width($length));
+	if ((is_bool($image)) || ($image == NULL))
+	  {
+	    echo "Erreur: Impossible de créer l'image...\n";
+	    return (0);
+	  }
+	if (imagesx($image) >= imagesy($image))
+	  {
+	    $reduction = (($new_length * 100) / imagesx($image));
+	    $new_heigth = ((imagesy($image) * $reduction) / 100);
+	  }
+	else
+	  {
+	    $reduction = (($new_length * 100) / imagesy($image));
+	    $new_heigth = ((imagesx($image) * $reduction) / 100);
+	  }
+	imagecopyresized($canvas, $image, $x_pos, $y_pos, 0, 0, $new_length, $new_heigth, imagesx($image), imagesy($image));
+	if (($n ==1) || ($N == 1))
+	  imagestring($canvas, 1, $x_pos, $y_pos, $name[0],$text_color);
+	echo $images[0][$counter1]."\n";
+	++$counter1;
+	++$counter2;
+	$x_pos += $new_length;
+	if ($x_pos >= 800)
+	  {
+	    $x_pos = 0;
+	    $y_pos += $new_length;
 	  }
       }
     if ($g == 1)
-      imagegif($canvas, $argv[$argc - 1].($counter - 1).".gif");
+      imagegif($canvas, $argv[$argc - 1].".gif");
     if ($j == 1)
-      imagejpeg($canvas, $argv[$argc - 1].($counter - 1).".jpeg");
+      imagejpeg($canvas, $argv[$argc - 1].".jpeg");
     if ($p == 1)
-      imagepng($canvas, $argv[$argc - 1].($counter - 1).".png");
-    ++$counter;
-    if ($counter < $argc - 1)
-      imagedestroy($canvas);
+      imagepng($canvas, $argv[$argc - 1].".png");
+    imagedestroy($canvas);
   }
 ?>
