@@ -6,7 +6,7 @@
 // Login   <poitre_j@etna-alternance.net>
 // 
 // Started on  Fri Nov  3 10:00:19 2017 POITREAU Julien
-// Last update Sat Nov  4 10:02:52 2017 POITREAU Julien
+// Last update Sat Nov  4 10:07:13 2017 POITREAU Julien
 //
 
 function find_width($number)
@@ -178,6 +178,11 @@ while ($counter < $argc - 1)
 	      $new_length = (800 / find_width($max_images_amount));
 	    else
 	      $new_length = (800 / find_width($length));
+	    if (is_bool($image))
+	      {
+		echo "Erreur: Impossible de créer l'image...\n";
+		return (0);
+	      }
 	    if (imagesx($image) >= imagesy($image))
 	      {
 		$reduction = (($new_length * 100) / imagesx($image));
