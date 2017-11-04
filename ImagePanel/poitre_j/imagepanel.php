@@ -6,7 +6,7 @@
 // Login   <poitre_j@etna-alternance.net>
 // 
 // Started on  Fri Nov  3 10:00:19 2017 POITREAU Julien
-// Last update Sat Nov  4 10:08:08 2017 POITREAU Julien
+// Last update Sat Nov  4 10:09:00 2017 POITREAU Julien
 //
 
 function find_width($number)
@@ -160,6 +160,7 @@ while ($counter < $argc - 1)
 	$canvas = imagecreatetruecolor(800, 800);
 	$x_pos = 0;
 	$y_pos = 0;
+	$image = "";
 	$text_color = imagecolorallocate($canvas , 255, 255, 255);
 	while (($counter1 < $max_images_amount) && ($counter1 < $length - 1))
 	  {
