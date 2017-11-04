@@ -6,7 +6,7 @@
 // Login   <poitre_j@etna-alternance.net>
 // 
 // Started on  Fri Nov  3 10:00:19 2017 POITREAU Julien
-// Last update Sat Nov  4 09:50:30 2017 POITREAU Julien
+// Last update Sat Nov  4 09:52:05 2017 POITREAU Julien
 //
 
 function find_width($number)
@@ -202,7 +202,7 @@ while ($counter < $argc - 1)
     if ($p == 1)
       imagepng($canvas, $argv[$argc - 1].($counter - 1).".png");
     ++$counter;
+    if ($counter < $argc - 1)
+      imagedestroy($canvas);
   }
-if ($canvas != NULL)
-  imagedestroy($canvas);
 ?>
