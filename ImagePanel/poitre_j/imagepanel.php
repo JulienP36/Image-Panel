@@ -6,7 +6,7 @@
 // Login   <poitre_j@etna-alternance.net>
 // 
 // Started on  Fri Nov  3 10:00:19 2017 POITREAU Julien
-// Last update Sat Nov  4 11:38:14 2017 POITREAU Julien
+// Last update Sat Nov  4 11:40:52 2017 POITREAU Julien
 //
 
 function find_width($number)
@@ -200,7 +200,7 @@ if ($ok == 1)
 	  preg_match('/([^\/][\d\w\.]+)$(?<=(?:.jpeg)|(?:.png)|(?:.gif))/', $images[0][$counter2], $name);
 	if ($extension['extension'] == "png")
 	  $image = imagecreatefrompng($images[0][$counter2]);
-	if ($extension['extension'] == "jpeg")
+	if (($extension['extension'] == "jpeg") || ($extension['extension'] == "jpg"))
 	  $image = imagecreatefromjpeg($images[0][$counter2]);
 	if ($extension['extension'] == "gif")
 	  $image = imagecreatefromgif($images[0][$counter2]);
